@@ -8,9 +8,13 @@ use function view;
 
 class BlogController extends Controller
 {
-    public function list() {
+    public function list()
+    {
         $data = [];
-        $data['posts'] = BlogPost::orderByDesc('id')->paginate(10);
+
+        $data['posts'] = BlogPost::where('visible', true)
+            ->orderByDesc('id')
+            ->paginate(10);
 
         return view('blog.home', $data);
     }
