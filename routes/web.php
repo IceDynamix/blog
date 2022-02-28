@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\Blog\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'list']);
+Route::get('/', [BlogController::class, 'list']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard.home');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
